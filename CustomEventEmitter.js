@@ -4,25 +4,25 @@ class CustomEventEmitter {
         this.listeners = {};
     }
 
-    addEventListener(eventType, callback) {
-        const eventListeners = this.listeners[eventType] || [];
+    addEventListener(eventName, callback) {
+        const eventListeners = this.listeners[eventName] || [];
         eventListeners.push(callback);
-        this.listeners[eventType] = eventListeners;
+        this.listeners[eventName] = eventListeners;
     }
 
-    removeEventListener(eventType, callback) {
-        const eventListeners = this.listeners[eventType] || [];
+    removeEventListener(eventName, callback) {
+        const eventListeners = this.listeners[eventName] || [];
         const index = eventListeners.indexOf(callback);
         eventListeners.splice(index, 1);
-        this.listeners[eventType] = eventListeners;
+        this.listeners[eventName] = eventListeners;
     }
 
-    getListeners(eventType) {
-        return this.listeners[eventType];
+    getListeners(eventName) {
+        return this.listeners[eventName];
     }
 
-    emit(eventType, ...args) {
-        const eventListeners = this.listeners[eventType];
+    emit(eventName, ...args) {
+        const eventListeners = this.listeners[eventName];
         eventListeners.forEach(listener => {
             listener(...args);
         });
